@@ -6,7 +6,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: './index.html',
-        movie: './src/movie.html'
+        movie: './movie.html'
       }
     }
   }

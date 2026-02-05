@@ -67,3 +67,6 @@ async function searchMovies() {
     resultsDiv.innerHTML = "<p>Something went wrong. Try again.</p>";
   }
 }
+
+
+window.open(`./movie.html?id=${movie.imdbID}`, "_blank");

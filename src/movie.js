@@ -76,7 +76,8 @@ async function loadSimilarMovies(genre) {
       `;
 
       card.addEventListener("click", () => {
-        window.open(`/movie.html?id=${movie.imdbID}`, "_blank");
+        window.open(`./movie.html?id=${movie.imdbID}`, "_blank");
+
       });
 
       similarDiv.appendChild(card);

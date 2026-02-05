@@ -180,7 +180,14 @@ h3 {
   }
 
   .info {
-    width: 90%;
+    width: 100%;
+    
+    margin-top: 20px;
+  }
+
+  .info h1 {
+    font-size: 32px;
+    color: rgb(255, 255, 255);
   }
 
   .movie-card {
@@ -192,7 +199,7 @@ h3 {
   padding: 0 20px; /* levo i desno po 20px */
   display: flex;
   flex-direction: row;
-  gap: 0;
+  gap: 12px;
   margin: 0 auto;
   box-sizing: border-box;
 }

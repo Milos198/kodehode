@@ -1,9 +1,12 @@
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 body {
   overflow-x: hidden;
+  margin: 0;
 }
 
 
@@ -22,16 +25,24 @@ body {
 #results {
   margin: 20px auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 12px;
   max-width: 1200px;
   justify-content: center;
+  padding: 0 10px;
 }
 
 .search-container {
-  text-align: center;
-  margin-bottom: 20px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  box-sizing: border-box;
 }
+
 
 
 .movie-card {
@@ -94,12 +105,12 @@ h3 {
 }
 
 #searchInput {
-  width: 50%;
+  width: 100%;
   padding: 10px;
   font-size: 16px;
   border: none;
   border-radius: 12px;
-  margin-bottom: 20px;
+  
 }
 #searchInput:focus {
   outline: none;
@@ -171,6 +182,27 @@ h3 {
   .info {
     width: 90%;
   }
+
+  .movie-card {
+    padding: 22px;
+  }
+
+.search-container {
+  width: 100%;
+  padding: 0 20px; /* levo i desno po 20px */
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+#results {
+
+  padding: 0px;
+
+}
+
 }
 
 

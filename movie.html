@@ -5,31 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Movie Details</title>
 
+  <link rel="stylesheet" href="/src/style.css">
+
+
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
       background: #121212;
       color: #eee;
-      max-width: 900px;
       margin: auto;
-    }
-
-    .movie-container {
-      display: flex;
-      gap: 20px;
-      background: #1e1e1e;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      width: 100%;
+      max-width: 100%;
     }
 
     img {
       width: 260px;
       border-radius: 8px;
       height: fit-content;
-      
-
     }
 
     .info {
@@ -41,17 +34,16 @@
     }
 
     .back-btn {
-     padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 500px;
-  background: hsla(345, 100%, 50%, 0.412);
-  color: #ffffff;
-  cursor: pointer;
-  margin-left: 10px;
-  margin-bottom: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 500px;
+      background: hsla(345, 100%, 50%, 0.412);
+      color: #ffffff;
+      cursor: pointer;
+      margin-left: 10px;
+      margin-bottom: 20px;
     }
-    
 
     .similar {
       margin-top: 40px;
@@ -70,7 +62,6 @@
       text-align: center;
       cursor: pointer;
       transition: 0.2s;
-      
     }
 
     .similar-card:hover {
@@ -82,22 +73,20 @@
       height: 220px;
       object-fit: cover;
       border-radius: 6px;
-
     }
+
     .similar h4 {
-  
-  font-size: 18px;
-  color: rgb(255, 255, 255);
-  width: 60%;
-  margin: auto;
-  margin-top: 20px;
-}
+      font-size: 18px;
+      color: rgb(255, 255, 255);
+      width: 60%;
+      margin: auto;
+      margin-top: 20px;
+    }
 
-.similar p {
-  font-size: 14px;
-  color: hsla(345, 100%, 50%, 0.412);
-  }
-
+    .similar p {
+      font-size: 14px;
+      color: hsla(345, 100%, 50%, 0.412);
+    }
   </style>
 </head>
 
@@ -112,11 +101,5 @@
   </div>
 
   <script type="module" src="/src/movie.js"></script>
-
-
-
-
-
-
 </body>
 </html>

@@ -28,7 +28,14 @@ async function searchMovies() {
     const movies = response.data.Search || [];
     resultsDiv.innerHTML = "";
 
-    movies.forEach((movie) => {
+    for (const movie of movies) {
+      // 🔥 Drugi API poziv — ovde dobijamo Runtime
+      const details = await axios.get(BASE_URL, {
+        params: { apikey: API_KEY, i: movie.imdbID }
+      });
+
+      const info = details.data;
+
       const card = document.createElement("div");
       card.className = "movie-card";
 
@@ -40,19 +47,21 @@ async function searchMovies() {
       card.innerHTML = `
         <img src="${poster}" alt="${movie.Title}">
         <h3>${movie.Title}</h3>
-        <p>${movie.Year}</p>
+
+        <div class="year-runtime">
+          <p>${movie.Year}</p>
+          <p><strong>Runtime:</strong> ${info.Runtime}</p>
+        </div>
       `;
 
-      // Klik otvara novu karticu sa detaljima
+      // Klik otvara detalje
       card.addEventListener("click", () => {
         window.open(`/kodehode/movie.html?id=${movie.imdbID}`, "_blank");
-
       });
 
       resultsDiv.appendChild(card);
-    });
+    }
 
-    
   } catch (error) {
     console.error("Search error:", error);
     resultsDiv.innerHTML = "<p>Something went wrong. Try again.</p>";

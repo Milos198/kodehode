@@ -4,12 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Search App</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+</style>
 
     <style>
       body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
+        font-family: 'Bungee', cursive;
+        width: 100%;
+        
         background: #f5f5f5;
+      
+      }
+
+      body h1 {
+        color: hsla(345, 100%, 50%, 0.412);
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        font-family: 'Bungee', cursive;
+        font-size: 48px;
+        margin: 40px 20px;
+        
       }
 
 
@@ -24,26 +40,36 @@
         background: white;
         padding: 10px;
         border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        text-align: center;
+        text-align: left;
+        height: auto;
+        
       }
 
       .movie-card img {
         width: 100%;
-        height: 260px;
+        height: 350px;
         object-fit: cover;
-        border-radius: 6px;
+        border-radius: 12px;
       }
     </style>
   </head>
 
   <body>
-    <h1>KDHD</h1>
 
+    <video autoplay muted loop id="bg-video">
+  <source src="/src/video/videoplayback (3).mp4" type="video/mp4">
+</video>
+
+<div class="video-gradient"></div>
+
+    <h1>KDHD</h1>
+   <div class="search-container">
     <input id="searchInput" type="text" placeholder="Search for a movie..." />
     <button id="searchBtn">Search</button>
+    </div>
 
     <div id="results"></div>
+    
 
     <script type="module" src="/src/main.js"></script>
   </body>

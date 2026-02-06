@@ -8,6 +8,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
 </style>
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
+</style>
+
     <style>
       body {
         font-family: 'Bungee', cursive;
@@ -23,9 +27,12 @@
         text-align: center;
         position: relative;
         z-index: 2;
-        font-family: 'Bungee', cursive;
+        
         font-size: 48px;
         margin: 40px 20px;
+          font-family: "Uncial Antiqua", system-ui;
+  font-weight: 400;
+  font-style: normal;
         
       }
 
@@ -63,11 +70,17 @@
 
 <div class="video-gradient"></div>
 
-    <h1>KDHD</h1>
-   <div class="search-container">
-    <input id="searchInput" type="text" placeholder="Search for a movie..." />
-    <button id="searchBtn">Search</button>
+    <h1>KodeHode</h1>
+  <div class="search-container">
+    <div class="search-wrapper">
+        <input id="searchInput" type="text" placeholder="Search for a movie..." />
+        <div id="autocomplete" class="autocomplete-list"></div>
     </div>
+
+    <button id="searchBtn">Search</button>
+</div>
+
+
 
     <div id="results"></div>
     

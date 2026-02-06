@@ -1,7 +1,11 @@
 import axios from "axios";
 
-const API_KEY = "72b8da3f";
+const API_KEY = "72b8da3f"; // OMDb
 const BASE_URL = "https://www.omdbapi.com/";
+
+// TMDB
+const TMDB_KEY = "bfb428005f4970a7cf8c6d8fbde8919c";
+const TMDB_BASE = "https://api.themoviedb.org/3";
 
 const params = new URLSearchParams(window.location.search);
 const movieId = params.get("id");
@@ -37,10 +41,21 @@ async function loadMovie() {
           <p><strong>Actors:</strong> ${movie.Actors}</p>
           <p><strong>Box Office:</strong> ${movie.BoxOffice || "N/A"}</p>
           <p><strong>Plot:</strong> ${movie.Plot}</p>
+
+          <button id="trailerBtn" class="trailer-btn">Watch Trailer</button>
         </div>
       </div>
     `;
 
+    // 🔥 OVO JE POSLEDNJI KORAK KOJI TI JE BIO NEJASAN
+    document.getElementById("trailerBtn").addEventListener("click", async () => {
+      const url = await getTrailer(movieId);
+      if (url) {
+        window.open(url, "_blank");
+      } else {
+        alert("Trailer not available.");
+      }
+    });
 
     loadSimilarMovies(movie.Genre.split(",")[0].trim());
 
@@ -77,7 +92,6 @@ async function loadSimilarMovies(genre) {
 
       card.addEventListener("click", () => {
         window.open(`./movie.html?id=${movie.imdbID}`, "_blank");
-
       });
 
       similarDiv.appendChild(card);
@@ -88,3 +102,37 @@ async function loadSimilarMovies(genre) {
 }
 
 loadMovie();
+
+// 🔥 TMDB TRAILER FETCH
+async function getTrailer(imdbID) {
+  try {
+    // 1. Pronađi TMDB ID preko IMDb ID
+    const find = await axios.get(`${TMDB_BASE}/find/${imdbID}`, {
+      params: {
+        api_key: TMDB_KEY,
+        external_source: "imdb_id"
+      }
+    });
+
+    const tmdbMovie = find.data.movie_results[0];
+    if (!tmdbMovie) return null;
+
+    const tmdbId = tmdbMovie.id;
+
+    // 2. Uzmi video listu
+    const videos = await axios.get(`${TMDB_BASE}/movie/${tmdbId}/videos`, {
+      params: { api_key: TMDB_KEY }
+    });
+
+    // 3. Pronađi trailer
+    const trailer = videos.data.results.find(
+      v => v.type === "Trailer" && v.site === "YouTube"
+    );
+
+    return trailer ? `https://www.youtube.com/watch?v=${trailer.key}` : null;
+
+  } catch (err) {
+    console.error("Trailer error:", err);
+    return null;
+  }
+}

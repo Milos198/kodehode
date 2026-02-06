@@ -11,6 +11,45 @@ searchBtn.addEventListener("click", searchMovies);
 
 const input = document.getElementById("searchInput");
 
+const autocomplete = document.getElementById("autocomplete");
+
+input.addEventListener("input", async () => {
+  const query = input.value.trim();
+
+  if (query.length < 2) {
+    autocomplete.style.display = "none";
+    return;
+  }
+
+  try {
+    const response = await axios.get(BASE_URL, {
+      params: { apikey: API_KEY, s: query }
+    });
+
+    const movies = response.data.Search || [];
+
+    autocomplete.innerHTML = "";
+    autocomplete.style.display = "block";
+
+    movies.slice(0, 5).forEach(movie => {
+      const item = document.createElement("div");
+      item.className = "autocomplete-item";
+      item.textContent = movie.Title;
+
+      item.addEventListener("click", () => {
+        window.open(`./movie.html?id=${movie.imdbID}`, "_blank");
+        autocomplete.style.display = "none";
+      });
+
+      autocomplete.appendChild(item);
+    });
+
+  } catch (err) {
+    autocomplete.style.display = "none";
+  }
+});
+
+
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && input.value.trim() !== "") {
     searchMovies();

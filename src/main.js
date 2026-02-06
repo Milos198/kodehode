@@ -9,6 +9,15 @@ const resultsDiv = document.getElementById("results");
 
 searchBtn.addEventListener("click", searchMovies);
 
+const input = document.getElementById("searchInput");
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && input.value.trim() !== "") {
+    searchMovies();
+  }
+});
+
+
 async function searchMovies() {
   const query = document.getElementById("searchInput").value.trim();
   if (!query) return;
@@ -69,4 +78,4 @@ async function searchMovies() {
 }
 
 
-window.open(`./movie.html?id=${movie.imdbID}`, "_blank");
+

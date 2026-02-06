@@ -158,3 +158,5 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 >>>>>>> aa18012383657356c0bfee77576279ae82a9a05d
+dist/
+*.mp4

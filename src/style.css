@@ -205,10 +205,17 @@ h3 {
   padding: 0 20px; /* levo i desno po 20px */
   display: flex;
   flex-direction: row;
-  gap: 12px;
+  gap: 0px;
   margin: 0 auto;
   box-sizing: border-box;
 }
+
+#searchBtn {
+ 
+  margin-left: 12px;
+}
+
+
 
 #results {
 

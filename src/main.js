@@ -28,26 +28,51 @@ input.addEventListener("input", async () => {
 
     const movies = response.data.Search || [];
 
-    autocomplete.innerHTML = "";
-    autocomplete.style.display = "block";
+  autocomplete.innerHTML = "";
+autocomplete.style.display = "block";
 
-    movies.slice(0, 5).forEach(movie => {
-      const item = document.createElement("div");
-      item.className = "autocomplete-item";
-      item.textContent = movie.Title;
+movies.slice(0, 5).forEach(movie => {
+  const item = document.createElement("div");
+  item.className = "autocomplete-item";
+  item.textContent = movie.Title;
 
-      item.addEventListener("click", () => {
-        window.open(`./movie.html?id=${movie.imdbID}`, "_blank");
-        autocomplete.style.display = "none";
-      });
+  item.addEventListener("click", () => {
+    // Sakrij dropdown pre navigacije
+    autocomplete.style.display = "none";
 
-      autocomplete.appendChild(item);
-    });
+    // Otvori film u novom tabu
+    window.open(`./movie.html?id=${movie.imdbID}`, "_blank");
+  });
 
-  } catch (err) {
+  autocomplete.appendChild(item);
+});
+
+// Ako nema filmova, sakrij dropdown
+if (movies.length === 0) {
+  autocomplete.style.display = "none";
+}
+
+} catch (err) {
+  autocomplete.style.display = "none";
+}
+});
+
+// BONUS: sakrij dropdown kada klikneš van search container-a
+document.addEventListener("click", (e) => {
+  const searchContainer = document.querySelector(".search-container");
+
+  if (!searchContainer.contains(e.target)) {
     autocomplete.style.display = "none";
   }
 });
+
+// BONUS: sakrij dropdown kada je input prazan
+searchInput.addEventListener("input", () => {
+  if (searchInput.value.trim() === "") {
+    autocomplete.style.display = "none";
+  }
+});
+
 
 
 input.addEventListener("keydown", (e) => {

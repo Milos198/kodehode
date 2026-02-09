@@ -4,38 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Search App</title>
-    <style>
-@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
-</style>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
-</style>
+    <link rel="stylesheet" href="./src/style.css">
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
+    </style>
 
     <style>
       body {
         font-family: 'Bungee', cursive;
         width: 100%;
         margin: 0;
-        
         background: #f5f5f5;
-      
       }
 
       body h1 {
-        color: whitesmoke;        
+        color: whitesmoke;
         text-align: center;
         position: relative;
         z-index: 2;
-        
         font-size: 48px;
         margin: 40px 20px;
-          font-family: "Uncial Antiqua", system-ui;
-  font-weight: 400;
-  font-style: normal;
-        
+        font-family: "Uncial Antiqua", system-ui;
+        font-weight: 400;
+        font-style: normal;
       }
-
 
       #results {
         display: grid;
@@ -50,7 +45,6 @@
         border-radius: 8px;
         text-align: left;
         height: auto;
-        
       }
 
       .movie-card img {
@@ -65,27 +59,25 @@
   <body>
 
     <video autoplay muted loop id="bg-video">
-  <source src="/src/video/videoplayback (3).mp4" type="video/mp4">
-</video>
+      <source src="./src/video/videoplayback (3).mp4" type="video/mp4">
+    </video>
 
-<div class="video-gradient"></div>
+    <div class="video-gradient"></div>
 
     <h1>KodeHode</h1>
-  <div class="search-container">
-    <div class="search-wrapper">
+
+    <div class="search-container">
+      <div class="search-wrapper">
         <input id="searchInput" type="text" placeholder="Search for a movie..." />
         <div id="autocomplete" class="autocomplete-list"></div>
+      </div>
+
+      <button id="searchBtn">Search</button>
     </div>
 
-    <button id="searchBtn">Search</button>
-</div>
-
-
-
     <div id="results"></div>
-    
 
-  <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/main.js"></script>
 
   </body>
 </html>

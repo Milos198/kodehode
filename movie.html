@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Movie Details</title>
 
-  <link rel="stylesheet" href="/src/style.css">
+  <link rel="stylesheet" href="./src/style.css">
+
 
 
   <style>
@@ -45,22 +46,20 @@
     }
 
     .back-btn {
-   padding: 12px 24px;
-  font-size: 16px;
-  border: whitesmoke solid 1px;
-  border-radius: 12px;
-  background: hsla(0, 0%, 0%, 0.437);
-  color: #ffffff;
-  cursor: pointer;
-  margin-left: 22px;
-  margin-bottom: 30px;
-}
+      padding: 12px 24px;
+      font-size: 16px;
+      border: whitesmoke solid 1px;
+      border-radius: 12px;
+      background: hsla(0, 0%, 0%, 0.437);
+      color: #ffffff;
+      cursor: pointer;
+      margin-left: 22px;
+      margin-bottom: 30px;
+    }
 
-
-
-.back-btn:hover {
-  background: hsla(0, 0%, 0%, 0.612);
-}
+    .back-btn:hover {
+      background: hsla(0, 0%, 0%, 0.612);
+    }
 
     .similar {
       margin-top: 40px;
@@ -90,13 +89,12 @@
       height: 220px;
       object-fit: cover;
       border-radius: 6px;
-    } 
+    }
 
     .similar h2 {
       font-size: 24px;
       color: rgb(255, 255, 255);
       width: 60%;
-      
       margin-top: 20px;
       margin-bottom: 20px;
     }
@@ -120,14 +118,18 @@
 <body>
   <button class="back-btn" onclick="window.close()">← Back</button>
 
-  <div id="movieDetails">Loading...</div>
+  <div id="movie-details">Loading...</div>
 
   <div class="similar">
     <h2>Similar Movies</h2>
     <div id="similarMovies" class="similar-grid"></div>
   </div>
 
-  <script type="module" src="./src/main.js"></script>
+  <!-- OVO JE BILO POGREŠNO -->
+  <!-- <script type="module" src="./src/main.js"></script> -->
+
+  <!-- OVO JE ISPRAVNO -->
+  <script type="module" src="./src/movie.js"></script>
 
 </body>
 </html>

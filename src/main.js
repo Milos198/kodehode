@@ -5,19 +5,26 @@ const API_KEY = "72b8da3f";
 const BASE_URL = "https://www.omdbapi.com/";
 
 const searchBtn = document.getElementById("searchBtn");
+const searchInput = document.getElementById("searchInput");
 const resultsDiv = document.getElementById("results");
-
-searchBtn.addEventListener("click", searchMovies);
-
-const input = document.getElementById("searchInput");
-
 const autocomplete = document.getElementById("autocomplete");
 
-input.addEventListener("input", async () => {
-  const query = input.value.trim();
+// ------------------------------
+// CENTRALNA FUNKCIJA ZA DROPDOWN
+// ------------------------------
+function hideDropdown() {
+  autocomplete.style.display = "none";
+  autocomplete.innerHTML = "";
+}
+
+// ------------------------------
+// AUTOCOMPLETE LOGIKA
+// ------------------------------
+searchInput.addEventListener("input", async () => {
+  const query = searchInput.value.trim();
 
   if (query.length < 2) {
-    autocomplete.style.display = "none";
+    hideDropdown();
     return;
   }
 
@@ -28,62 +35,73 @@ input.addEventListener("input", async () => {
 
     const movies = response.data.Search || [];
 
-  autocomplete.innerHTML = "";
-autocomplete.style.display = "block";
+    if (movies.length === 0) {
+      hideDropdown();
+      return;
+    }
 
-movies.slice(0, 5).forEach(movie => {
-  const item = document.createElement("div");
-  item.className = "autocomplete-item";
-  item.textContent = movie.Title;
+    autocomplete.innerHTML = "";
+    autocomplete.style.display = "block";
 
-  item.addEventListener("click", () => {
-    // Sakrij dropdown pre navigacije
-    autocomplete.style.display = "none";
+    movies.slice(0, 5).forEach(movie => {
+      const item = document.createElement("div");
+      item.className = "autocomplete-item";
+      item.textContent = movie.Title;
 
-    // Otvori film u novom tabu
-    window.open(`./movie.html?id=${movie.imdbID}`, "_blank");
-  });
+      item.addEventListener("click", () => {
+        hideDropdown();
+        window.open(`./movie.html?id=${movie.imdbID}`, "_blank");
+      });
 
-  autocomplete.appendChild(item);
+      autocomplete.appendChild(item);
+    });
+
+  } catch (err) {
+    hideDropdown();
+  }
 });
 
-// Ako nema filmova, sakrij dropdown
-if (movies.length === 0) {
-  autocomplete.style.display = "none";
-}
-
-} catch (err) {
-  autocomplete.style.display = "none";
-}
-});
-
-// BONUS: sakrij dropdown kada klikneš van search container-a
+// ------------------------------
+// KLIK VAN SEARCH CONTAINERA
+// ------------------------------
 document.addEventListener("click", (e) => {
   const searchContainer = document.querySelector(".search-container");
 
   if (!searchContainer.contains(e.target)) {
-    autocomplete.style.display = "none";
+    hideDropdown();
   }
 });
 
-// BONUS: sakrij dropdown kada je input prazan
-searchInput.addEventListener("input", () => {
-  if (searchInput.value.trim() === "") {
-    autocomplete.style.display = "none";
-  }
+// ------------------------------
+// KLIK NA INPUT → ZATVORI DROPDOWN
+// ------------------------------
+searchInput.addEventListener("click", () => {
+  hideDropdown();
 });
 
+// ------------------------------
+// KLIK NA SEARCH DUGME
+// ------------------------------
+searchBtn.addEventListener("click", () => {
+  hideDropdown();
+  searchMovies();
+});
 
-
-input.addEventListener("keydown", (e) => {
-  if (e.key === "Enter" && input.value.trim() !== "") {
+// ------------------------------
+// ENTER → ZATVARA DROPDOWN + TRAŽI FILMOVE
+// ------------------------------
+searchInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    hideDropdown();
     searchMovies();
   }
 });
 
-
+// ------------------------------
+// GLAVNA FUNKCIJA ZA PRETRAGU
+// ------------------------------
 async function searchMovies() {
-  const query = document.getElementById("searchInput").value.trim();
+  const query = searchInput.value.trim();
   if (!query) return;
 
   resultsDiv.innerHTML = "<p>Searching...</p>";
@@ -102,7 +120,6 @@ async function searchMovies() {
     resultsDiv.innerHTML = "";
 
     for (const movie of movies) {
-      // 🔥 Drugi API poziv — ovde dobijamo Runtime
       const details = await axios.get(BASE_URL, {
         params: { apikey: API_KEY, i: movie.imdbID }
       });
@@ -127,9 +144,8 @@ async function searchMovies() {
         </div>
       `;
 
-      // Klik otvara detalje
       card.addEventListener("click", () => {
-        window.open(`/kodehode/movie.html?id=${movie.imdbID}`, "_blank");
+        window.open(`./movie.html?id=${movie.imdbID}`, "_blank");
       });
 
       resultsDiv.appendChild(card);
@@ -140,6 +156,3 @@ async function searchMovies() {
     resultsDiv.innerHTML = "<p>Something went wrong. Try again.</p>";
   }
 }
-
-
-

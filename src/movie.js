@@ -26,9 +26,22 @@ async function loadMovie() {
 
     const movie = response.data;
 
+    // ⭐ POSTAVI POZADINU NA POSTER FILMA
+    if (movie.Poster && movie.Poster !== "N/A") {
+      document.body.style.backgroundImage = `url(${movie.Poster})`;
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundPosition = "center";
+      document.body.style.backgroundRepeat = "no-repeat";
+      document.body.style.backgroundAttachment = "fixed";
+    }
+
     movieContainer.innerHTML = `
       <div class="movie-container">
-        <img src="${movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/300x450?text=No+Image"}" />
+        <img src="${
+          movie.Poster !== "N/A"
+            ? movie.Poster
+            : "https://via.placeholder.com/300x450?text=No+Image"
+        }" />
         
         <div class="info">
           <h1>${movie.Title}</h1>
@@ -42,7 +55,7 @@ async function loadMovie() {
       </div>
     `;
 
-    // Pokrećemo Similar Movies
+    // Učitaj slične filmove
     loadSimilarMovies(movie);
 
   } catch (err) {
@@ -69,7 +82,9 @@ async function loadSimilarMovies(movie) {
     const results = response.data.Search || [];
 
     // Filtriramo da izbacimo trenutni film
-    const filtered = results.filter(m => m.imdbID !== movieId).slice(0, 6);
+    const filtered = results
+      .filter((m) => m.imdbID !== movieId)
+      .slice(0, 6);
 
     if (filtered.length === 0) {
       similarContainer.innerHTML = "<p>No similar movies found.</p>";
@@ -78,7 +93,7 @@ async function loadSimilarMovies(movie) {
 
     similarContainer.innerHTML = "";
 
-    filtered.forEach(sim => {
+    filtered.forEach((sim) => {
       const poster =
         sim.Poster && sim.Poster !== "N/A"
           ? sim.Poster

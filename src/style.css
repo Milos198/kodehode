@@ -20,6 +20,11 @@ body {
   width: 100%;
 }
 
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
 
 
 #results {
@@ -30,6 +35,16 @@ body {
   max-width: 1200px;
   justify-content: center;
   padding: 0 10px;
+}
+
+.hero-text {
+ 
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  
+  padding: 100px 100px 60px 100px;
+  max-width: 800px;
 }
 
 .search-container {
@@ -46,12 +61,16 @@ body {
 
 
 .movie-card {
-  background: #1a1a1a00;
-  padding: 10px;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 14px;
   border-radius: 8px;
   text-align: left;
   cursor: pointer;
   transition: transform 0.2s ease;
+   backdrop-filter: blur(20px) brightness(1.2);
+  -webkit-backdrop-filter: blur(20px) brightness(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  
   
 
 }
@@ -81,7 +100,7 @@ body {
 }
 
 strong {
-  color: #767676;
+  color: #a2a2a2;
 }
 
 
@@ -196,7 +215,7 @@ h3 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0,0,0,0));
+  background: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0.282));
   z-index: -1;
   pointer-events: none;
 }
@@ -228,6 +247,10 @@ h3 {
     object-fit: contain;
   }
 
+  h1 {
+    font-size: 12px;
+  }
+
   .info {
     width: 100%;
     
@@ -239,10 +262,16 @@ h3 {
     color: rgb(255, 255, 255);
   }
 
-  .movie-card {
-    padding: 22px;
-    background: #000000d8;
-  }
+ .movie-card {
+  padding: 32px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(20px) brightness(1.2);
+  -webkit-backdrop-filter: blur(20px) brightness(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  margin: 0 10px;
+}
+
 
 
 
@@ -314,6 +343,25 @@ h3 {
 }
 
 
+.hero-text {
+ 
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  
+  padding: 0px 30px 30px 30px;
+  max-width: 800px;
+}
+
+.hero-text h4 {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.hero-text h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
 
 
 

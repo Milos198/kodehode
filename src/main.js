@@ -50,7 +50,8 @@ searchInput.addEventListener("input", async () => {
 
       item.addEventListener("click", () => {
         hideDropdown();
-        window.open(`./movie.html?id=${movie.imdbID}`, "_blank");
+        window.open(`/kodehode/movie.html?id=${movie.imdbID}`, "_blank");
+
       });
 
       autocomplete.appendChild(item);

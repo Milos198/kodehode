@@ -145,7 +145,8 @@ async function searchMovies() {
       `;
 
       card.addEventListener("click", () => {
-        window.open(`./movie.html?id=${movie.imdbID}`, "_blank");
+        window.open(`/kodehode/movie.html?id=${movie.imdbID}`, "_blank");
+
       });
 
       resultsDiv.appendChild(card);
